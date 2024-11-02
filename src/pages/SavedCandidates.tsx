@@ -1,5 +1,6 @@
-import  { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Candidate from "../interfaces/Candidate.interface";
+import "./syles.css";
 
 const SavedCandidates = () => {
   const [candidates, setCandidates] = useState<Candidate[]>([]);
@@ -25,7 +26,7 @@ const SavedCandidates = () => {
       </div>
       <div>
         {candidates.length > 0 ? (
-          <table>
+          <table className="table-container">
             <thead>
               <tr>
                 <th className="cell">Avatar</th>
@@ -41,11 +42,13 @@ const SavedCandidates = () => {
               {candidates.map((candidate, index) => (
                 <tr key={index}>
                   <td className="cell">
-                    <img
-                      src={candidate.avatar_url}
-                      alt={candidate.login}
-                      className="avatar-img"
-                    />
+                    <div className="avatar-container">
+                      <img
+                        src={candidate.avatar_url}
+                        alt={candidate.login}
+                        className="avatar-img"
+                      />
+                    </div>
                   </td>
                   <td className="cell">
                     {candidate.name} ({candidate.login})
@@ -59,7 +62,7 @@ const SavedCandidates = () => {
                       className="removeBtn"
                       onClick={() => removeCandidate(index)}
                     >
-                    
+                      Remove
                     </button>
                   </td>
                 </tr>
